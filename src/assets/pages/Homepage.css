@@ -1,0 +1,9 @@
+.card_container {
+    max-width: screen;
+    margin: 25px;
+}
+
+.search_container {
+    margin: 25px;
+    text-align: center;
+}

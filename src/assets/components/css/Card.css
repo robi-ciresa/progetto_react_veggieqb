@@ -1,0 +1,43 @@
+.card_component {
+    border-color: #ACC277;
+    border-radius: 5%;
+    border-width: 3px;
+    border-style: solid;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: max-content;
+}
+
+.card_title{
+    font-size: larger;
+    margin: 10px;
+}
+
+.card_photo{
+    width: 200px;
+    height: 175px;
+    margin: 10px;
+}
+
+.card_button{
+    width: 100px;
+    height: 30px;
+    background-color: #ACC277;
+    border-radius: 2px;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.card_checkbox{
+    width: 40px;
+}
+
+.card_cb_label {
+    font-weight: 400;
+    font-size: medium;
+    margin-right: 15px;
+}

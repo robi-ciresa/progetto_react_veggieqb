@@ -1,0 +1,15 @@
+.footer {
+    background-image: url('../../img/background_img.png');
+    display: flex;
+}
+
+.sec_footer {
+    font-size: 15px;
+    margin: 15px;
+    width: 33%;
+}
+
+.logo_social {
+    width: 20px;
+    margin-left: 5px;
+}

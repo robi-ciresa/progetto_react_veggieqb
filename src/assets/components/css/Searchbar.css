@@ -1,0 +1,25 @@
+.search_input {
+    width: 30%;
+    height: 30px;
+    border-radius: 2px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.search_checkbox {
+    width: 30px;
+}
+
+.search_label {
+    font-weight: 400;
+    font-size: medium;
+}
+
+.search_button{
+    width: 30%;
+    height: 30px;
+    background-color: #ACC277;
+    border-radius: 3px;
+    margin-top: 10px;
+    align-items: center;
+}

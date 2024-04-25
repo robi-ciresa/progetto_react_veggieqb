@@ -1,0 +1,28 @@
+.navbar {
+    display: flex;
+    background-image: url('../../img/background_img.png');
+} 
+
+.sec_title {
+    font-size: 25px;
+    font-weight: 600;
+    align-content: center;
+    margin: 15px;
+    width: 33%;
+}
+.sec_logo {
+    text-align: center;
+    width: 33%;
+}
+.sec_description {
+    font-size: 15px;
+    font-weight: 600;
+    align-content: center;
+    text-align: end;
+    margin: 15px;
+    width: 33%;
+    
+}
+.img_logo {
+    width: 100px;
+}
