@@ -28,7 +28,6 @@ root.render(
     <Provider store={store}>
     <RouterProvider router={router}></RouterProvider>
     </Provider>
-    <Homepage></Homepage>
   </React.StrictMode>
 );
 

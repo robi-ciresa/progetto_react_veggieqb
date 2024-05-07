@@ -3,8 +3,8 @@ import Navbar from "../components/jsx/Navbar";
 import Footer from "../components/jsx/Footer";
 import Card from "../components/jsx/Card";
 import Searchbar from "../components/jsx/Searchbar";
+import Errorpage from "./Errorpage";
 import { plusOffset, minusOffset } from "../../redux/slice_offset";
-import { newRecipes } from "../../redux/slice_recipes";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import './Homepage.css'
@@ -12,12 +12,14 @@ import './Homepage.css'
 export default function Homepage () {
     
     const [totalResults, setTotalResults] = useState(0)
+    const [recipes, setRecipes] = useState([])
+    const [isPending, setIsPending] = useState(true)
+    const [error, setError] = useState(null)
 
     const query = useSelector((state) => state.query.query)
     const lactoseFree = useSelector((state) => state.lactoseFree.lactoseFree)
     const glutenFree = useSelector((state) => state.glutenFree.glutenFree)
     const offset = useSelector((state) => state.offset.value)
-    const recipes = useSelector((state) => state.recipes.recipes)
     const dispatch = useDispatch()
 
     const nextPage = () =>{
@@ -29,10 +31,6 @@ export default function Homepage () {
     }
 
     const API_KEY = 'ea2899c101ee46659ec25a85183e7a21';
-
-    useEffect(() =>{
-        getRecipes()
-    }, [query])
 
     let intolerances = "";
     if (lactoseFree&&glutenFree) {
@@ -47,28 +45,44 @@ export default function Homepage () {
             }
         }
 
-    const getRecipes = async () => {
-        let recipeList = await fetch (`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&titleMatch=${query}&intolerances=${intolerances}&diet=vegan|vegetarian&number=10`);
-        let recipeListJson = await recipeList.json();
-        console.log (recipeListJson)
-            setTotalResults(recipeListJson.totalResults)
-        dispatch(newRecipes(recipeListJson.results))
-        }
+    useEffect(() => {
+        getRecipes();
+    }, [])
 
-    let pageArray = recipes.slice (offset-12, offset);
+    const getRecipes = async () =>  {
+        try {
+            const recipeList = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&titleMatch=${query}&intolerances=${intolerances}&diet=vegan|vegetarian&number=12`); // Replace with your API endpoint
+            if (!recipeList.ok) {
+              throw new Error('Network response was not ok.');
+            }
+            const recipeListJson = await recipeList.json();
+            setRecipes(recipeListJson.results);
+            setTotalResults(recipeListJson.totalResults)
+            setIsPending(false);
+        } catch (error) {
+            setError(error.message);
+            setIsPending(false);
+          }
+    };
 
     return (
         <>
         <Navbar></Navbar>
         <div className="search_container">
-            <Searchbar></Searchbar>
+            <Searchbar getRecipes={getRecipes}></Searchbar>
         </div>
         <div className="card_container row">
-            { pageArray.map ((recipe) => (
-                <Card id={recipe.id}
-                title={recipe.title}
-                photo={recipe.image}/>
-                ))
+            {isPending ? (<div>I'm searching...</div>) :
+            error ? (<Errorpage></Errorpage>) :
+            recipes ? 
+                (<><p>I've found {totalResults} recipes!</p>
+                {recipes.map((recipe) => (
+                    <Card id={recipe.id}
+                    title={recipe.title}
+                    photo={recipe.image}/>
+                ))}
+                </>) : (<Errorpage></Errorpage>) 
+            
             }
         </div>
         <div className="page_button_container">

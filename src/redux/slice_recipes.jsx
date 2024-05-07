@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+/*import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     recipes: []
@@ -15,4 +15,4 @@ export const sliceRecipes = createSlice({
 })
 
 export const { newRecipes } = sliceRecipes.actions
-export const recipesReducer = sliceRecipes.reducer
+export const recipesReducer = sliceRecipes.reducer*/

@@ -21,7 +21,9 @@ export default function Detailpage () {
         let recipeInfo = await fetch (`https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=${API_KEY}&includeNutrition=false`);
         let recipeInfoJson = await recipeInfo.json();
         setDetails(recipeInfoJson);
-    }} , [])
+        }
+        getDetails()
+    } , [recipeID])
     
     return (
         <>

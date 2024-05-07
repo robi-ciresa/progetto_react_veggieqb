@@ -12,6 +12,5 @@ export const store = configureStore({
         query: queryReducer,
         offset: offsetReducer,
         favourites: favouritesReducer,
-
     }
 })
