@@ -27,6 +27,7 @@ export default function Detailpage () {
     
     useEffect (() => {
         getDetails()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     } , [id])
 
     const getDetails = async () => { 

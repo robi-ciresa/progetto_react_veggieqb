@@ -44,6 +44,7 @@ export default function Homepage () {
 
     useEffect(() => {
         getRecipes();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [offset])
 
     const getRecipes = async () =>  {
