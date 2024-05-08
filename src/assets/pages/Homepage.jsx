@@ -26,8 +26,9 @@ export default function Homepage () {
     const offset = useSelector((state) => state.offset.value)
     const dispatch = useDispatch()
 
-    const API_KEY = 'ea2899c101ee46659ec25a85183e7a21';
+    //const API_KEY = 'ea2899c101ee46659ec25a85183e7a21';
     //const API_KEY = 'b142b7373106495b88bcbcc6fd77ccea';
+    const API_KEY = 'b55d8d65f16f417294e2c1857c048c53';
 
     let intolerances = "";
     if (lactoseFree&&glutenFree) {
