@@ -1,8 +1,8 @@
 import React from "react";
-import LogoIG from '../../img/logo_ig.png'
-import LogoIN from '../../img/logo_in.png'
-import LogoTH from '../../img/logo_th.png'
-import '../css/Footer.css'
+import LogoIG from '../../img/logo_ig.png';
+import LogoIN from '../../img/logo_in.png';
+import LogoTH from '../../img/logo_th.png';
+import '../css/Footer.css';
 
 export default function Footer () {
     return(

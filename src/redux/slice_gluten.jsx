@@ -8,10 +8,10 @@ export const sliceGluten = createSlice({
     name: "glutenFree",
     initialState,
     reducers: {
-        checkGlutenTrue: (state) =>{
+        checkGlutenTrue: (state) => {
             state.glutenFree = true
         },
-        checkGlutenFalse: (state) =>{
+        checkGlutenFalse: (state) => {
             state.glutenFree = false
         }
     }

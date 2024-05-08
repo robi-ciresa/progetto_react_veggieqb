@@ -7,8 +7,8 @@ const initialState = {
 export const sliceQuery = createSlice({
     name: "query",
     initialState,
-    reducers:{
-        newQuery: (state, action) =>{
+    reducers: {
+        newQuery: (state, action) => {
             state.query = action.payload
         }
     }

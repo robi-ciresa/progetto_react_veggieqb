@@ -15,7 +15,7 @@ const router = createHashRouter(
   createRoutesFromElements(
     <>
       <Route path='/' element={<Homepage/>}></ Route>
-      <Route path='/detailpage/:recipeid' element={<Detailpage/>} />
+      <Route path='/detailpage/:id' element={<Detailpage/>} />
       <Route path='/favourites' element={<Favpage/>} />
       <Route path='*' element={<Errorpage />}/>
     </>

@@ -1,18 +1,22 @@
 import React from "react";
+import axios from "axios";
 import Navbar from "../components/jsx/Navbar";
 import Footer from "../components/jsx/Footer";
 import Card from "../components/jsx/Card";
 import Searchbar from "../components/jsx/Searchbar";
 import Errorpage from "./Errorpage";
+import './Homepage.css';
+
 import { plusOffset, minusOffset } from "../../redux/slice_offset";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import './Homepage.css'
+
+
 
 export default function Homepage () {
     
     const [totalResults, setTotalResults] = useState(0)
-    const [recipes, setRecipes] = useState([])
+    const [recipes, setRecipes] = useState([{}])
     const [isPending, setIsPending] = useState(true)
     const [error, setError] = useState(null)
 
@@ -22,15 +26,9 @@ export default function Homepage () {
     const offset = useSelector((state) => state.offset.value)
     const dispatch = useDispatch()
 
-    const nextPage = () =>{
-        dispatch(plusOffset())
-    }
-
-    const backPage = () =>{
-        dispatch(minusOffset())
-    }
-
-    const API_KEY = 'ea2899c101ee46659ec25a85183e7a21';
+    //const API_KEY = 'ea2899c101ee46659ec25a85183e7a21';
+    //const API_KEY = 'b142b7373106495b88bcbcc6fd77ccea';
+    const API_KEY = 'b55d8d65f16f417294e2c1857c048c53';
 
     let intolerances = "";
     if (lactoseFree&&glutenFree) {
@@ -47,48 +45,70 @@ export default function Homepage () {
 
     useEffect(() => {
         getRecipes();
-    }, [])
+    }, [offset])
 
     const getRecipes = async () =>  {
         try {
-            const recipeList = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&titleMatch=${query}&intolerances=${intolerances}&diet=vegan|vegetarian&number=12`); // Replace with your API endpoint
-            if (!recipeList.ok) {
-              throw new Error('Network response was not ok.');
+            const recipeList = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&titleMatch=${query}&intolerances=${intolerances}&diet=vegan|vegetarian&number=12&offset=${offset}`); // Replace with your API endpoint
+            if (recipeList.status === 429) {
+                console.log (recipeList.status);
+                throw new Error('API for free, too many request.');
             }
-            const recipeListJson = await recipeList.json();
-            setRecipes(recipeListJson.results);
-            setTotalResults(recipeListJson.totalResults)
-            setIsPending(false);
+            if (!recipeList.status === 200) {
+                console.log (recipeList.status);
+                throw new Error('Something went wrong.');
+              }
+            if (recipeList.data.results === null) {
+                console.log (recipeList.data.results);
+                throw new Error('Results not found.');
+              }
+            console.log (recipeList.data.results);
+            setRecipes(recipeList.data.results);
+            setTotalResults(recipeList.data.totalResults);
+            
         } catch (error) {
             setError(error.message);
-            setIsPending(false);
           }
+
+        setIsPending(false);
     };
+
+    const nextPage = () =>{
+        dispatch(plusOffset())
+    }
+
+    const backPage = () =>{
+        dispatch(minusOffset())
+    }
 
     return (
         <>
         <Navbar></Navbar>
+        
         <div className="search_container">
             <Searchbar getRecipes={getRecipes}></Searchbar>
         </div>
-        <div className="card_container row">
+        
+        <div className="recipes_container row">
             {isPending ? (<div>I'm searching...</div>) :
-            error ? (<Errorpage></Errorpage>) :
-            recipes ? 
-                (<><p>I've found {totalResults} recipes!</p>
-                {recipes.map((recipe) => (
+            error ? (<Errorpage error = {error}></Errorpage>) :
+            recipes.length > 0 ? 
+                (<>
+                    {recipes.map((recipe) => (
                     <Card id={recipe.id}
-                    title={recipe.title}
+                    title={recipe.title ?? 'title not found'}
                     photo={recipe.image}/>
-                ))}
-                </>) : (<Errorpage></Errorpage>) 
+                    ))}
+                </>) : ( <Errorpage error = {error}></Errorpage> ) 
             
             }
         </div>
-        <div className="page_button_container">
-        {offset !== 0 ? <button className="a" onClick={backPage}>Back</button> : null}
-        {(totalResults-offset) < 12 ? null :<button className="a" onClick={nextPage}>Next</button>}
+        
+        <div className="button_container">
+            {offset !== 0 ? <button className="homepage_button" onClick={backPage}>Back</button> : null}
+            {(totalResults-offset) < 12 ? null :<button className="homepage_button" onClick={nextPage}>Next</button>}
         </div>
+        
         <Footer></Footer>
         </>
     );

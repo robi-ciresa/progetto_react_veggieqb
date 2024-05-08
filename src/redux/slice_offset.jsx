@@ -8,10 +8,10 @@ export const sliceOffset = createSlice({
     name: "offset",
     initialState,
     reducers: {
-        plusOffset: (state) =>{
+        plusOffset: (state) => {
             state.value += 12
         },
-        minusOffset: (state) =>{
+        minusOffset: (state) => {
             state.value -= 12
         },
         resetOffset: (state) => {

@@ -1,9 +1,25 @@
-.card_container {
-    max-width: screen;
-    margin: 25px;
+.search_container {
+    text-align: center;
 }
 
-.search_container {
+.recipes_container {
+    display: flex;
+    justify-content: center;
+}
+
+.button_container {
     margin: 25px;
     text-align: center;
+}
+
+.homepage_button{
+    width: 100px;
+    height: 30px;
+    background-color: #ACC277;
+    border-radius: 2px;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
