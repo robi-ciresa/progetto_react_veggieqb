@@ -19,7 +19,7 @@ export default function Favpage () {
         { favourites.length > 0 ?
             (<>
                 {favourites.map ((fav) => 
-                <Card key={fav.id}
+                <Card
                     id={fav.id}
                     title={fav.title}
                     photo={fav.image}>
