@@ -91,7 +91,7 @@ export default function Homepage () {
         
         <div className="recipes_container row">
             {isPending ? (<div>I'm searching...</div>) :
-            error ? (<Errorpage error = {error}></Errorpage>) :
+            error ? (<Errorpage></Errorpage>) :
             recipes.length > 0 ? 
                 (<>
                     {recipes.map((recipe) => (
@@ -99,7 +99,7 @@ export default function Homepage () {
                     title={recipe.title ?? 'title not found'}
                     photo={recipe.image}/>
                     ))}
-                </>) : ( <Errorpage error = {error}></Errorpage> ) 
+                </>) : ( <Errorpage></Errorpage> ) 
             
             }
         </div>

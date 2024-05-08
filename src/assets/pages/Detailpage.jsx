@@ -72,7 +72,7 @@ export default function Detailpage () {
         {
             isPending ? (<div>I'm searching...</div>) :
             
-            error ? (<Errorpage error = {error}></Errorpage>) :
+            error ? (<Errorpage></Errorpage>) :
             
             details ?
             ( <div className='detail_page'>
@@ -111,7 +111,7 @@ export default function Detailpage () {
                     <button className='detail_button' onClick={isFav ? removeFav : addFav}>{isFav ? 'remove FAV' : 'add to FAV'}</button>
                 </section>
             
-            </div> ) : <Errorpage error = {error}></Errorpage>
+            </div> ) : <Errorpage></Errorpage>
         }
         <Footer></Footer>
         </>
