@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-import Detailpage from './assets/pages/Detailpage';
-import Errorpage from './assets/pages/Errorpage';
-import Favpage from './assets/pages/Favpage';
-import Homepage from './assets/pages/Homepage';
+import Detailpage from './assets/pages/jsx/Detailpage';
+import Errorpage from './assets/pages/jsx/Errorpage';
+import Favpage from './assets/pages/jsx/Favpage';
+import Homepage from './assets/pages/jsx/Homepage';
 import { store } from '../src/redux/store.jsx';
 import { createHashRouter,createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';

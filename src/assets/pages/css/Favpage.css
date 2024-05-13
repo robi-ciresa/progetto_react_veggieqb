@@ -1,0 +1,18 @@
+.fav_button {
+    width: 200px;
+    height: 40px;
+    background-color: #ACC277;
+    border-radius: 2px;
+    align-items: center;
+    margin: 20px;
+    transition: transform 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+.fav_container {
+    display: flex;
+    justify-content: center; 
+}

@@ -1,0 +1,30 @@
+.search_container {
+    text-align: center;
+}
+
+.recipes_container {
+    display: flex;
+    justify-content: center;
+}
+
+.button_container {
+    margin: 25px;
+    text-align: center;
+}
+
+.homepage_button{
+    width: 100px;
+    height: 30px;
+    background-color: #ACC277;
+    border-radius: 2px;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    transition: transform 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
