@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import helmet from "helmet";
 import Navbar from "../../components/jsx/Navbar";
 import Footer from "../../components/jsx/Footer";
 import Errorpage from "./Errorpage";
